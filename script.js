@@ -1,17 +1,55 @@
 
+/* =========================================
+   MAHEK KHAN - PORTFOLIO INTERACTIONS
+========================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  // ===== ROBOT INTRO =====
+  const introScreen = document.getElementById("introScreen");
+  const enterButton = document.getElementById("enterPortfolio");
+  const skipButton = document.getElementById("skipIntro");
+  const robotBuddy = document.getElementById("robotBuddy");
 
-  // 1. Automatically update the footer year
-  const yearElement = document.getElementById("currentYear");
+  function enterPortfolio() {
+    if (!introScreen || introScreen.classList.contains("is-hidden")) {
+      return;
+    }
 
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+    introScreen.classList.add("is-hidden");
+
+    window.setTimeout(() => {
+      introScreen.remove();
+    }, 700);
   }
 
-  // 2. Mobile navigation menu
+  if (enterButton) {
+    enterButton.addEventListener("click", enterPortfolio);
+  }
+
+  if (skipButton) {
+    skipButton.addEventListener("click", enterPortfolio);
+  }
+
+  // Robot reacts when clicked.
+  if (robotBuddy) {
+    robotBuddy.addEventListener("click", () => {
+      if (typeof robotBuddy.animate !== "function") return;
+
+      robotBuddy.animate(
+        [
+          { transform: "scale(1) rotate(0deg)" },
+          { transform: "scale(1.06) rotate(-3deg)" },
+          { transform: "scale(1) rotate(0deg)" }
+        ],
+        {
+          duration: 350,
+          easing: "ease-out"
+        }
+      );
+    });
+  }
+
+  // ===== MOBILE NAVIGATION =====
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
 
@@ -34,8 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
+    document.addEventListener("click", (event) => {
+      if (
+        navLinks.classList.contains("open") &&
+        !navLinks.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
         navLinks.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "Open navigation");
@@ -43,134 +85,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Smooth scrolling for in-page links
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-
-      if (target) {
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: reduceMotion ? "auto" : "smooth",
-          block: "start"
-        });
-      }
-    });
-  });
-
-  // 4. Reveal cards as they enter the viewport
-  const revealElements = document.querySelectorAll(".reveal");
-
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    revealElements.forEach((element) => {
-      element.classList.add("visible");
-    });
-  } else {
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            currentObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -25px 0px"
-      }
-    );
-
-    revealElements.forEach((element) => {
-      observer.observe(element);
-    });
-  }
-
-  // 5. Terminal typing animation
-  const typedCommand = document.querySelector(".typed-command");
-  const terminalOutput = document.getElementById("terminalOutput");
-
-  if (typedCommand && terminalOutput) {
-    const command = typedCommand.dataset.text || "whoami";
-    const output = "cybersecurity-student";
-
-    if (reduceMotion) {
-      typedCommand.textContent = command;
-      terminalOutput.textContent = output;
-    } else {
-      typedCommand.textContent = "";
-      terminalOutput.textContent = "";
-      terminalOutput.style.opacity = "0";
-
-      let index = 0;
-
-      const typeCharacter = () => {
-        if (index < command.length) {
-          typedCommand.textContent += command.charAt(index);
-          index += 1;
-          window.setTimeout(typeCharacter, 85);
-        } else {
-          window.setTimeout(() => {
-            terminalOutput.textContent = output;
-            terminalOutput.style.opacity = "1";
-          }, 300);
-        }
-      };
-
-      window.setTimeout(typeCharacter, 550);
-    }
-  }
-
-  // 6. Interactive project filters
-  const filterButtons = document.querySelectorAll(".filter-btn");
+  // ===== PROJECT FILTERS =====
+  const filterButtons = document.querySelectorAll(".filter-button");
   const projectCards = document.querySelectorAll(".project-card");
-  const projectCount = document.getElementById("visibleProjectCount");
-
-  function updateProjectCount(count) {
-    if (projectCount) {
-      projectCount.textContent = String(count).padStart(2, "0");
-    }
-  }
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const selectedFilter = button.dataset.filter || "all";
-      let visibleCount = 0;
 
-      // Update the selected filter button
-      filterButtons.forEach((filterButton) => {
-        const isActive = filterButton === button;
-
-        filterButton.classList.toggle("active", isActive);
-        filterButton.setAttribute("aria-pressed", String(isActive));
+      filterButtons.forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle("active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
       });
 
-      // Show only matching projects
       projectCards.forEach((card) => {
         const categories = (card.dataset.category || "").split(/\s+/);
-
         const shouldShow =
-          selectedFilter === "all" ||
-          categories.includes(selectedFilter);
+          selectedFilter === "all" || categories.includes(selectedFilter);
 
-        card.classList.toggle("filter-hidden", !shouldShow);
-
-        if (shouldShow) {
-          visibleCount += 1;
-          card.classList.add("visible");
-        }
+        card.hidden = !shouldShow;
       });
-
-      updateProjectCount(visibleCount);
     });
+
+    button.setAttribute(
+      "aria-pressed",
+      String(button.classList.contains("active"))
+    );
   });
 
-  updateProjectCount(projectCards.length);
+  // ===== CURRENT YEAR =====
+  const currentYear = document.getElementById("currentYear");
 
-  console.log("Portfolio initialized successfully.");
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
+
+  // ===== NAVIGATION SECTION HIGHLIGHT =====
+  const sections = document.querySelectorAll(
+    "main section[id]"
+  );
+  const navigationLinks = document.querySelectorAll(
+    '.nav-links a[href^="#"]'
+  );
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          navigationLinks.forEach((link) => {
+            const isCurrent =
+              link.getAttribute("href") === `#${entry.target.id}`;
+
+            link.classList.toggle("active", isCurrent);
+          });
+        });
+      },
+      {
+        rootMargin: "-25% 0px -60% 0px",
+        threshold: 0
+      }
+    );
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+  }
 });
