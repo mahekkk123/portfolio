@@ -1,97 +1,75 @@
 
-/* =========================================
-   MAHEK KHAN - PORTFOLIO INTERACTIONS
-========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== ROBOT INTRO =====
-  const introScreen = document.getElementById("introScreen");
+  const intro = document.getElementById("introScreen");
   const enterButton = document.getElementById("enterPortfolio");
   const skipButton = document.getElementById("skipIntro");
-  const robotBuddy = document.getElementById("robotBuddy");
-
-  function enterPortfolio() {
-    if (!introScreen || introScreen.classList.contains("is-hidden")) {
-      return;
-    }
-
-    introScreen.classList.add("is-hidden");
-
-    window.setTimeout(() => {
-      introScreen.remove();
-    }, 700);
-  }
-
-  if (enterButton) {
-    enterButton.addEventListener("click", enterPortfolio);
-  }
-
-  if (skipButton) {
-    skipButton.addEventListener("click", enterPortfolio);
-  }
-
-  // Robot reacts when clicked.
-  if (robotBuddy) {
-    robotBuddy.addEventListener("click", () => {
-      if (typeof robotBuddy.animate !== "function") return;
-
-      robotBuddy.animate(
-        [
-          { transform: "scale(1) rotate(0deg)" },
-          { transform: "scale(1.06) rotate(-3deg)" },
-          { transform: "scale(1) rotate(0deg)" }
-        ],
-        {
-          duration: 350,
-          easing: "ease-out"
-        }
-      );
-    });
-  }
-
-  // ===== MOBILE NAVIGATION =====
+  const robot = document.getElementById("robotBuddy");
+  const searchInput = document.getElementById("projectSearch");
+  const filterButtons = [...document.querySelectorAll(".filter-button")];
+  const projectCards = [...document.querySelectorAll(".project-card")];
+  const projectCount = document.getElementById("projectCount");
+  const emptyState = document.getElementById("emptyState");
   const menuToggle = document.getElementById("menuToggle");
   const navLinks = document.getElementById("navLinks");
+  const terminalForm = document.getElementById("terminalForm");
+  const terminalInput = document.getElementById("terminalInput");
+  const terminalOutput = document.getElementById("terminalOutput");
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
+  // Welcome screen
+  document.body.classList.add("intro-open");
 
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Close navigation" : "Open navigation"
-      );
-    });
-
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      if (
-        navLinks.classList.contains("open") &&
-        !navLinks.contains(event.target) &&
-        !menuToggle.contains(event.target)
-      ) {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-      }
-    });
+  function closeIntro() {
+    if (!intro || intro.classList.contains("hidden")) return;
+    intro.classList.add("hidden");
+    document.body.classList.remove("intro-open");
   }
 
-  // ===== PROJECT FILTERS =====
-  const filterButtons = document.querySelectorAll(".filter-button");
-  const projectCards = document.querySelectorAll(".project-card");
+  enterButton?.addEventListener("click", closeIntro);
+  skipButton?.addEventListener("click", closeIntro);
+
+  robot?.addEventListener("click", () => {
+    const smile = robot.querySelector(".robot-smile");
+    if (smile) {
+      smile.style.borderBottomWidth = "4px";
+      setTimeout(() => smile.style.borderBottomWidth = "2px", 500);
+    }
+  });
+
+  // Project search + category filters
+  let activeCategory = "all";
+
+  function filterProjects() {
+    const query = (searchInput?.value || "").trim().toLowerCase();
+    let visibleCount = 0;
+
+    projectCards.forEach((card) => {
+      const category = (card.dataset.category || "").split(/\s+/);
+      const text = (
+        (card.dataset.search || "") + " " + card.textContent
+      ).toLowerCase();
+
+      const categoryMatches =
+        activeCategory === "all" || category.includes(activeCategory);
+      const searchMatches = text.includes(query);
+      const visible = categoryMatches && searchMatches;
+
+      card.hidden = !visible;
+      if (visible) visibleCount++;
+    });
+
+    if (projectCount) {
+      projectCount.textContent =
+        `Showing ${visibleCount} of ${projectCards.length} projects`;
+    }
+
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
+  }
+
+  searchInput?.addEventListener("input", filterProjects);
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedFilter = button.dataset.filter || "all";
+      activeCategory = button.dataset.filter || "all";
 
       filterButtons.forEach((item) => {
         const isActive = item === button;
@@ -99,13 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         item.setAttribute("aria-pressed", String(isActive));
       });
 
-      projectCards.forEach((card) => {
-        const categories = (card.dataset.category || "").split(/\s+/);
-        const shouldShow =
-          selectedFilter === "all" || categories.includes(selectedFilter);
-
-        card.hidden = !shouldShow;
-      });
+      filterProjects();
     });
 
     button.setAttribute(
@@ -114,43 +86,95 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // ===== CURRENT YEAR =====
-  const currentYear = document.getElementById("currentYear");
+  filterProjects();
 
-  if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-  }
+  // Mobile navigation
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = navLinks?.classList.toggle("open") || false;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+  });
 
-  // ===== NAVIGATION SECTION HIGHLIGHT =====
-  const sections = document.querySelectorAll(
-    "main section[id]"
-  );
-  const navigationLinks = document.querySelectorAll(
-    '.nav-links a[href^="#"]'
-  );
-
-  if ("IntersectionObserver" in window && sections.length) {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          navigationLinks.forEach((link) => {
-            const isCurrent =
-              link.getAttribute("href") === `#${entry.target.id}`;
-
-            link.classList.toggle("active", isCurrent);
-          });
-        });
-      },
-      {
-        rootMargin: "-25% 0px -60% 0px",
-        threshold: 0
-      }
-    );
-
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
+  navLinks?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+      if (menuToggle) menuToggle.textContent = "☰";
     });
+  });
+
+  // Active navigation link
+  const sections = [...document.querySelectorAll("main section[id]")];
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks?.querySelectorAll("a").forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${entry.target.id}`
+          );
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+
+    sections.forEach((section) => observer.observe(section));
   }
+
+  // Terminal commands
+  const commands = {
+    help: () => [
+      "Available commands:",
+      "about    - Learn about Mahek",
+      "skills   - View learning areas",
+      "projects - Explore project portfolio",
+      "clear    - Clear terminal output"
+    ],
+    about: () => [
+      "Name: Mahek Khan",
+      "Field: Computer Engineering",
+      "Interest: Cybersecurity and building practical projects",
+      "Status: Always learning."
+    ],
+    skills: () => [
+      "Python - learning and project practice",
+      "Linux - command-line fundamentals",
+      "Networking - ports and TCP/IP basics",
+      "Security - encryption and defensive concepts",
+      "Web - HTML, CSS, JavaScript"
+    ],
+    projects: () => [
+      `${projectCards.length} portfolio projects are listed.`,
+      "Scroll to the Projects section to search and filter them."
+    ]
+  };
+
+  function addTerminalLine(text, className = "") {
+    const line = document.createElement("p");
+    line.textContent = text;
+    if (className) line.className = className;
+    terminalOutput?.appendChild(line);
+  }
+
+  terminalForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const command = (terminalInput?.value || "").trim().toLowerCase();
+    if (!command || !terminalOutput) return;
+
+    addTerminalLine(`visitor@cyber:~$ ${command}`, "terminal-command");
+    if (command === "clear") {
+      terminalOutput.replaceChildren();
+    } else if (commands[command]) {
+      commands[command]().forEach((line) => addTerminalLine(line));
+    } else {
+      addTerminalLine(`Command not found: ${command}. Type "help" for options.`);
+    }
+
+    terminalInput.value = "";
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  });
+
+  // Footer year
+  const year = document.getElementById("currentYear");
+  if (year) year.textContent = new Date().getFullYear();
 });

@@ -4,363 +4,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080d1d">
-  <meta name="description" content="Mahek Khan's cybersecurity portfolio featuring Python security tools, encryption, networking and web development projects.">
-  <title>Mahek Khan | Cybersecurity Portfolio</title>
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Mahek Khan's cybersecurity and development portfolio. Explore security projects, Python tools and web applications.">
+  <title>Mahek Khan | Cyber World</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
 </head>
 <body>
 
-  <!-- ANIMATED INTRO SCREEN -->
-  <section class="intro-screen" id="introScreen" aria-label="Welcome">
-    <div class="intro-grid"></div>
-    <div class="intro-orb orb-one"></div>
-    <div class="intro-orb orb-two"></div>
-
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-stars"></div>
     <div class="intro-content">
-      <p class="intro-label"><span class="online-dot"></span> MAHEK'S CYBER WORLD</p>
-
-      <div class="robot-stage" id="robotBuddy" title="Click your Cyber Buddy">
-        <div class="robot-halo"></div>
-
-        <svg class="anime-robot" viewBox="0 0 240 260"
-             role="img" aria-label="Cute anime-inspired robot assistant">
-          <defs>
-            <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ffffff"/>
-              <stop offset="100%" stop-color="#9ebef3"/>
-            </linearGradient>
-            <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#243c70"/>
-              <stop offset="100%" stop-color="#10172e"/>
-            </linearGradient>
-          </defs>
-
-          <path d="M120 42 V25" stroke="#9adfff" stroke-width="5" stroke-linecap="round"/>
-          <circle cx="120" cy="18" r="10" fill="#7cf5ff"/>
-          <circle cx="120" cy="18" r="4" fill="#fff"/>
-
-          <rect x="28" y="91" width="30" height="60" rx="13" fill="#8ba9df"/>
-          <rect x="182" y="91" width="30" height="60" rx="13" fill="#8ba9df"/>
-          <rect x="36" y="104" width="13" height="34" rx="6" fill="#78f5ff"/>
-          <rect x="191" y="104" width="13" height="34" rx="6" fill="#78f5ff"/>
-
-          <rect x="45" y="39" width="150" height="143" rx="43"
-                fill="url(#shell)" stroke="#dceeff" stroke-width="3"/>
-          <rect x="60" y="56" width="120" height="103" rx="30"
-                fill="url(#face)" stroke="#8fd9ff" stroke-width="2"/>
-
-          <ellipse class="robot-eye" cx="91" cy="99" rx="13" ry="19" fill="#7cf5ff"/>
-          <ellipse class="robot-eye" cx="149" cy="99" rx="13" ry="19" fill="#7cf5ff"/>
-          <ellipse cx="95" cy="93" rx="4" ry="7" fill="#fff"/>
-          <ellipse cx="153" cy="93" rx="4" ry="7" fill="#fff"/>
-          <path d="M101 125 Q120 143 139 125" fill="none"
-                stroke="#b9fbff" stroke-width="4" stroke-linecap="round"/>
-
-          <path d="M78 181 Q120 165 162 181 L178 228 Q120 250 62 228 Z"
-                fill="url(#shell)" stroke="#dceeff" stroke-width="3"/>
-          <rect x="94" y="190" width="52" height="29" rx="10" fill="#19294c"/>
-          <path d="M105 204 H135" stroke="#7cf5ff" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="120" cy="204" r="5" fill="#fff"/>
-
-          <path d="M20 66 V82 M12 74 H28" stroke="#8bf5ff" stroke-width="3" stroke-linecap="round"/>
-          <path d="M218 56 V72 M210 64 H226" stroke="#c4a6ff" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-
-        <div class="robot-shadow"></div>
-        <span class="robot-hint">Click me ✦</span>
+      <div class="robot" id="robotBuddy" role="img" aria-label="Friendly robot assistant">
+        <div class="robot-antenna"></div>
+        <div class="robot-head">
+          <div class="robot-ear left"></div>
+          <div class="robot-ear right"></div>
+          <div class="robot-face">
+            <span class="robot-eye"></span>
+            <span class="robot-eye"></span>
+            <div class="robot-smile"></div>
+          </div>
+        </div>
+        <div class="robot-neck"></div>
+        <div class="robot-body">
+          <div class="robot-core">✦</div>
+        </div>
+        <div class="robot-arm left"></div>
+        <div class="robot-arm right"></div>
+        <div class="robot-foot left"></div>
+        <div class="robot-foot right"></div>
       </div>
 
-      <p class="intro-kicker">YOUR LITTLE CYBER COMPANION</p>
-      <h1>Hey, Mahek! <span>✦</span></h1>
+      <p class="eyebrow">WELCOME TO MY DIGITAL UNIVERSE</p>
+      <h1>Hey, Mahek! <span class="cyan">♡</span></h1>
       <p class="intro-description">
-        Welcome to my Cyber World.<br>
-        Let's explore code, creativity and cybersecurity.
+        Welcome to my Cyber World. Let's explore code,
+        creativity and cybersecurity together.
       </p>
-
-      <button class="enter-button" id="enterPortfolio">
-        Enter Portfolio <span>↗</span>
+      <button class="primary-button" id="enterPortfolio">
+        Enter Portfolio <span>→</span>
       </button>
-
-      <p class="intro-footer">LEARN <span>·</span> BUILD <span>·</span> SECURE</p>
+      <button class="skip-button" id="skipIntro">Skip intro</button>
     </div>
-    <button class="skip-intro" id="skipIntro" type="button">Skip intro ↗</button>
-  </section>
+    <div class="intro-footer">INITIALIZING CYBER SPACE <span>● ONLINE</span></div>
+  </div>
 
-  <!-- MAIN PORTFOLIO -->
-  <div class="site-wrapper" id="portfolio">
-
-    <header class="navbar">
-      <a class="logo" href="#home" aria-label="Mahek home">&lt;MK<span>/</span>&gt;</a>
-
-      <button class="menu-toggle" id="menuToggle"
-              aria-label="Open navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="nav-links" id="navLinks">
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="#home"><span class="brand-icon">⌘</span> MAHEK<span class="cyan">.DEV</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a class="nav-contact" href="#contact">Contact ↗</a>
-      </nav>
-    </header>
+        <a href="#terminal">Terminal</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-status" href="#contact"><span class="status-dot"></span> Open to opportunities</a>
+    </nav>
+  </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero section-wrap" id="home">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="online-dot"></span> CYBERSECURITY STUDENT</p>
-          <p class="hero-pretitle">HELLO, WORLD. I'M</p>
-          <h1>Mahek<br><span>Khan.</span></h1>
-          <h2>Curious mind. <span>Secure systems.</span></h2>
-          <p class="hero-description">
-            Computer Engineering student exploring cybersecurity, Python,
-            encryption, networking and secure web technologies. I enjoy
-            learning by building practical projects.
+  <main>
+    <section class="hero section container" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> COMPUTER ENGINEERING STUDENT</p>
+        <h1>Exploring the world of <span class="gradient-text">Cybersecurity.</span></h1>
+        <p class="hero-description">
+          Hi, I'm Mahek Khan. I enjoy building practical projects,
+          learning how systems work and exploring ways to make technology safer.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="primary-button">Explore my projects ↗</a>
+          <a href="#about" class="secondary-button">Get to know me</a>
+        </div>
+        <div class="hero-tags">
+          <span>Python</span><span>Linux</span><span>Networking</span><span>Security</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="hero-glow"></div>
+        <div class="code-window">
+          <div class="window-top"><div class="window-dots"><i></i><i></i><i></i></div><span>mahek@cyber-world</span></div>
+          <div class="code-content">
+            <p><span class="code-purple">class</span> <span class="code-cyan">CyberLearner</span>:</p>
+            <p class="indent"><span class="code-purple">def</span> __init__(self):</p>
+            <p class="indent2">self.name = <span class="code-green">"Mahek"</span></p>
+            <p class="indent2">self.curiosity = <span class="code-green">"∞"</span></p>
+            <p class="indent2">self.focus = [</p>
+            <p class="indent3"><span class="code-green">"Cybersecurity"</span>,</p>
+            <p class="indent3"><span class="code-green">"Python"</span>,</p>
+            <p class="indent3"><span class="code-green">"Building projects"</span></p>
+            <p class="indent2">]</p>
+            <p class="code-comment"># Always learning something new ✨</p>
+            <p class="terminal-cursor">▌</p>
+          </div>
+          <div class="window-bottom"><span>● SYSTEM READY</span><span>UTF-8</span></div>
+        </div>
+        <div class="floating-chip chip-top">⌘ Python</div>
+        <div class="floating-chip chip-bottom">✦ Learn · Build · Secure</div>
+      </div>
+      <a href="#about" class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></a>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">01 / ABOUT ME</p>
+        <h2>Curious mind. <span class="gradient-text">Security-first thinking.</span></h2>
+        <p>A little about the person behind the projects.</p>
+      </div>
+      <div class="about-grid">
+        <article class="glass-card about-card">
+          <div class="card-icon">⌘</div>
+          <h3>My journey</h3>
+          <p>
+            I'm a Computer Engineering student at Mumbai University,
+            developing my skills through hands-on coding and cybersecurity projects.
+            I like understanding how things work instead of only learning theory.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projects">Explore Projects ↘</a>
-            <a class="button button-secondary"
-               href="https://github.com/mahekkk123"
-               target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
-          </div>
-          <p class="hero-meta">COMPUTER ENGINEERING / CYBERSECURITY / PYTHON</p>
+        </article>
+        <article class="glass-card about-card">
+          <div class="card-icon">◎</div>
+          <h3>My current focus</h3>
+          <p>
+            Strengthening Linux, networking and Python fundamentals while exploring
+            encryption, defensive security and ethical security testing in authorized labs.
+          </p>
+        </article>
+        <article class="glass-card about-card">
+          <div class="card-icon">✧</div>
+          <h3>My approach</h3>
+          <p>
+            Learn step by step, build something practical, test it, document what
+            I learned and keep improving. Every project is an opportunity to grow.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="skills">
+      <div class="section-heading">
+        <p class="eyebrow">02 / SKILLS</p>
+        <h2>Tools in my <span class="gradient-text">learning toolkit.</span></h2>
+        <p>Technologies I use or am actively practising.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="glass-card skill-card"><span class="skill-symbol">Py</span><div><h3>Python</h3><p>Scripts, file handling, security utilities</p></div><span class="skill-level">Learning</span></article>
+        <article class="glass-card skill-card"><span class="skill-symbol">⌘</span><div><h3>Linux</h3><p>Command line and system basics</p></div><span class="skill-level">Learning</span></article>
+        <article class="glass-card skill-card"><span class="skill-symbol">↔</span><div><h3>Networking</h3><p>TCP/IP, ports and network analysis</p></div><span class="skill-level">Learning</span></article>
+        <article class="glass-card skill-card"><span class="skill-symbol">⛨</span><div><h3>Cybersecurity</h3><p>Encryption and security fundamentals</p></div><span class="skill-level">Learning</span></article>
+        <article class="glass-card skill-card"><span class="skill-symbol">⌬</span><div><h3>Web Development</h3><p>HTML, CSS and JavaScript</p></div><span class="skill-level">Building</span></article>
+        <article class="glass-card skill-card"><span class="skill-symbol">⑂</span><div><h3>Git & GitHub</h3><p>Version control and project publishing</p></div><span class="skill-level">Practising</span></article>
+      </div>
+    </section>
+
+    <section class="section container" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">03 / MY WORK</p>
+        <h2>Projects built with <span class="gradient-text">curiosity.</span></h2>
+        <p>Search projects by name or filter them by category.</p>
+      </div>
+
+      <label class="project-search" for="projectSearch">
+        <span class="search-icon">⌕</span>
+        <input type="search" id="projectSearch" placeholder="Search projects... e.g. Encryption, Python">
+        <span class="search-shortcut">SEARCH</span>
+      </label>
+
+      <div class="project-filters" id="projectFilters">
+        <button class="filter-button active" data-filter="all">All projects</button>
+        <button class="filter-button" data-filter="python">Python</button>
+        <button class="filter-button" data-filter="security">Security</button>
+        <button class="filter-button" data-filter="web">Web development</button>
+      </div>
+      <p class="project-count" id="projectCount" aria-live="polite">Showing 8 projects</p>
+
+      <div class="projects-grid" id="projectsGrid">
+        <article class="glass-card project-card" data-category="python security" data-search="cryptographic encryption vault aes pbkdf2 cryptography">
+          <div class="project-top"><span class="project-icon">🔐</span><span class="project-index">PROJECT_01</span></div>
+          <p class="project-type">CRYPTOGRAPHY</p><h3>Cryptographic Encryption Vault</h3>
+          <p>A file protection project using AES-256 encryption and PBKDF2-based key derivation.</p>
+          <div class="project-tags"><span>Python</span><span>AES-256</span><span>PBKDF2</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="python security" data-search="scamshield phishing scam spam risk checker">
+          <div class="project-top"><span class="project-icon">🛡️</span><span class="project-index">PROJECT_02</span></div>
+          <p class="project-type">THREAT AWARENESS</p><h3>ScamShield</h3>
+          <p>A privacy-focused concept for analysing suspicious messages and links and explaining potential warning signs.</p>
+          <div class="project-tags"><span>Security</span><span>Python</span><span>Privacy</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="web" data-search="learnx sdg education game learning web application">
+          <div class="project-top"><span class="project-icon">🌍</span><span class="project-index">PROJECT_03</span></div>
+          <p class="project-type">WEB APPLICATION</p><h3>LearnX-SDG</h3>
+          <p>An educational web project exploring interactive learning, progress tracking and sustainability goals.</p>
+          <div class="project-tags"><span>React</span><span>Supabase</span><span>Web</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="web" data-search="knowledge genome skills learning roadmap platform">
+          <div class="project-top"><span class="project-icon">🧬</span><span class="project-index">PROJECT_04</span></div>
+          <p class="project-type">SKILLS PLATFORM</p><h3>Knowledge Genome</h3>
+          <p>A platform concept for mapping skills, identifying learning gaps and planning a personalised roadmap.</p>
+          <div class="project-tags"><span>React</span><span>Supabase</span><span>Learning</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="python security" data-search="password strength checker entropy password security">
+          <div class="project-top"><span class="project-icon">🔑</span><span class="project-index">PROJECT_05</span></div>
+          <p class="project-type">SECURITY UTILITY</p><h3>Password Strength Checker</h3>
+          <p>A utility that evaluates password characteristics and gives understandable strength feedback.</p>
+          <div class="project-tags"><span>Python</span><span>Entropy</span><span>Security</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="python security" data-search="port status checker tcp ports network">
+          <div class="project-top"><span class="project-icon">🌐</span><span class="project-index">PROJECT_06</span></div>
+          <p class="project-type">NETWORKING</p><h3>Port Status Checker</h3>
+          <p>A TCP port-checking utility that helps practise basic network connectivity concepts.</p>
+          <div class="project-tags"><span>Python</span><span>TCP</span><span>Networking</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="python security" data-search="file protection utility encryption decryption aes">
+          <div class="project-top"><span class="project-icon">📁</span><span class="project-index">PROJECT_07</span></div>
+          <p class="project-type">FILE SECURITY</p><h3>File Protection Utility</h3>
+          <p>A tool for encrypting and decrypting files using password-based cryptographic protection.</p>
+          <div class="project-tags"><span>Python</span><span>Encryption</span><span>Files</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+        <article class="glass-card project-card" data-category="python security" data-search="email risk analyzer phishing suspicious urls">
+          <div class="project-top"><span class="project-icon">📨</span><span class="project-index">PROJECT_08</span></div>
+          <p class="project-type">PHISHING AWARENESS</p><h3>Email Risk Analyzer</h3>
+          <p>A learning tool that checks email text for suspicious terms and potentially risky URLs.</p>
+          <div class="project-tags"><span>Python</span><span>Phishing</span><span>Analysis</span></div>
+          <a class="project-link" href="https://github.com/mahekkk123?tab=repositories" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+        </article>
+      </div>
+      <div class="empty-state" id="emptyState" hidden><span>⌕</span><h3>No matching projects</h3><p>Try another keyword or select a different category.</p></div>
+    </section>
+
+    <section class="section container" id="terminal">
+      <div class="section-heading">
+        <p class="eyebrow">04 / EXPLORE</p>
+        <h2>A little <span class="gradient-text">cyber terminal.</span></h2>
+        <p>Try a command to learn more about me.</p>
+      </div>
+      <div class="terminal-panel">
+        <div class="terminal-header"><div class="window-dots"><i></i><i></i><i></i></div><span>mahek@portfolio:~</span><span class="terminal-online">● ONLINE</span></div>
+        <div class="terminal-output" id="terminalOutput" aria-live="polite"><p>Welcome to Mahek's portfolio terminal.</p><p>Type <span class="code-green">help</span> to see available commands.</p></div>
+        <form class="terminal-form" id="terminalForm">
+          <label for="terminalInput"><span class="terminal-prompt">visitor@cyber:~$</span></label>
+          <input id="terminalInput" type="text" autocomplete="off" placeholder="Type help..." aria-label="Terminal command">
+          <button type="submit" aria-label="Run command">↵</button>
+        </form>
+        <p class="terminal-hint">Available commands: help, about, skills, projects, clear</p>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <div class="contact-panel">
+        <p class="eyebrow">05 / CONTACT</p>
+        <h2>Let's build something <span class="gradient-text">meaningful.</span></h2>
+        <p>Interested in cybersecurity, collaborative projects or learning opportunities? Feel free to connect.</p>
+        <div class="contact-actions">
+          <a class="primary-button" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+          <a class="secondary-button" href="mailto:">Email me ↗</a>
         </div>
+        <p class="contact-note">Replace the email link with your preferred contact email before publishing.</p>
+      </div>
+    </section>
+  </main>
 
-        <div class="terminal-card">
-          <div class="terminal-top">
-            <div class="terminal-dots"><i></i><i></i><i></i></div>
-            <span>mahek@security: ~</span>
-            <span class="terminal-lock">◇</span>
-          </div>
-          <div class="terminal-body">
-            <p><span class="prompt">mahek@security:~$</span> whoami</p>
-            <p class="terminal-output">cybersecurity-student</p>
-            <p><span class="prompt">mahek@security:~$</span> cat focus.txt</p>
-            <ul>
-              <li>Learning Linux and networking</li>
-              <li>Building Python security tools</li>
-              <li>Practising ethical cybersecurity</li>
-              <li>Improving every day</li>
-            </ul>
-            <p class="terminal-ready"><span class="prompt">mahek@security:~$</span> <span class="cursor">▋</span></p>
-          </div>
-          <div class="terminal-bottom"><span>●</span> LEARN MODE ACTIVE</div>
-        </div>
-      </section>
+  <footer class="site-footer container">
+    <a class="brand" href="#home">MAHEK<span class="cyan">.DEV</span></a>
+    <p>Built with curiosity, code and a security-first mindset.</p>
+    <p>© <span id="currentYear"></span> Mahek Khan</p>
+  </footer>
 
-      <!-- ABOUT -->
-      <section class="section-wrap content-section" id="about">
-        <div class="section-heading">
-          <p class="section-number">01 / ABOUT ME</p>
-          <h2>Building skills<br>through <span>practice.</span></h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-copy">
-            <p>
-              I'm a Computer Engineering student interested in cybersecurity
-              and secure technology. My learning journey combines programming,
-              Linux, networking, encryption and web development.
-            </p>
-            <p>
-              I prefer hands-on learning: writing code, testing it in my own
-              environment, understanding errors and improving projects step by step.
-            </p>
-            <p>
-              My goal is to strengthen my cybersecurity fundamentals and
-              gradually develop practical skills in ethical hacking and defensive security.
-            </p>
-          </div>
-          <div class="stats-grid">
-            <div class="stat-card"><strong>08</strong><span>Portfolio Projects</span></div>
-            <div class="stat-card"><strong>Py</strong><span>Python & Security</span></div>
-            <div class="stat-card"><strong>01</strong><span>Learning Mindset</span></div>
-            <div class="stat-card"><strong>∞</strong><span>Room to Improve</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- JOURNEY -->
-      <section class="section-wrap content-section" id="journey">
-        <div class="section-heading">
-          <p class="section-number">02 / MY JOURNEY</p>
-          <h2>Education & <span>experience.</span></h2>
-        </div>
-        <div class="journey-grid">
-          <article class="journey-card">
-            <span class="card-tag">EDUCATION</span>
-            <h3>Computer Engineering</h3>
-            <p class="muted">Mumbai University</p>
-            <p>Studying programming, computer networks, algorithms, operating systems and computer security fundamentals.</p>
-          </article>
-          <article class="journey-card">
-            <span class="card-tag">PRACTICAL LEARNING</span>
-            <h3>Cybersecurity Projects</h3>
-            <p class="muted">Hands-on practice</p>
-            <p>Building Python utilities to explore encryption, port status checking, password security and phishing-risk awareness.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section class="section-wrap content-section" id="skills">
-        <div class="section-heading">
-          <p class="section-number">03 / TECHNICAL SKILLS</p>
-          <h2>Tools I'm learning <span>and using.</span></h2>
-          <p class="section-description">A snapshot of my current technical learning journey.</p>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-icon">Py</div><h3>Python</h3>
-            <p>Scripts, file handling, basic automation and security utilities.</p>
-            <div class="tags"><span>Python</span><span>Automation</span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon">$_</div><h3>Linux</h3>
-            <p>Command-line fundamentals and practical Linux environments.</p>
-            <div class="tags"><span>Kali Linux</span><span>Ubuntu</span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon">↔</div><h3>Networking</h3>
-            <p>Learning TCP/IP, ports, DNS, network services and traffic analysis.</p>
-            <div class="tags"><span>TCP/IP</span><span>Wireshark</span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon">#</div><h3>Security</h3>
-            <p>Exploring encryption, password security, phishing risks and safe testing.</p>
-            <div class="tags"><span>Encryption</span><span>Risk Analysis</span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon">{ }</div><h3>Web Development</h3>
-            <p>Building responsive interfaces and interactive web applications.</p>
-            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon">Git</div><h3>Tools & Workflow</h3>
-            <p>Working with code editors, version control and project documentation.</p>
-            <div class="tags"><span>Git</span><span>GitHub</span><span>VS Code</span></div>
-          </article>
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section class="section-wrap content-section" id="projects">
-        <div class="section-heading">
-          <p class="section-number">04 / SELECTED WORK</p>
-          <h2>Projects built <span>with purpose.</span></h2>
-          <p class="section-description">Practical projects exploring cybersecurity, Python, encryption and web development.</p>
-        </div>
-
-        <div class="project-filters" role="group" aria-label="Filter projects">
-          <button class="filter-button active" data-filter="all">All Projects</button>
-          <button class="filter-button" data-filter="security">Security</button>
-          <button class="filter-button" data-filter="python">Python</button>
-          <button class="filter-button" data-filter="web">Web Development</button>
-          <button class="filter-button" data-filter="encryption">Encryption</button>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card" data-category="security python encryption">
-            <div class="project-top"><span>01 / CRYPTOGRAPHY</span><span class="project-symbol">◇</span></div>
-            <h3>Cryptographic Encryption Vault</h3>
-            <p>A Python project exploring file encryption and decryption using AES-256 and password-based key derivation with PBKDF2.</p>
-            <div class="tags"><span>Python</span><span>AES-256</span><span>PBKDF2</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="security web">
-            <div class="project-top"><span>02 / SCAM AWARENESS</span><span class="project-symbol">⌁</span></div>
-            <h3>ScamShield</h3>
-            <p>A privacy-focused concept for checking suspicious messages and links, explaining warning signs and providing safer next steps.</p>
-            <div class="tags"><span>Security</span><span>Web</span><span>Risk Analysis</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="web">
-            <div class="project-top"><span>03 / EDTECH</span><span class="project-symbol">✳</span></div>
-            <h3>LearnX-SDG</h3>
-            <p>A gamified learning platform concept combining educational missions, progress tracking and a web-based user experience.</p>
-            <div class="tags"><span>React</span><span>Vite</span><span>Supabase</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="web">
-            <div class="project-top"><span>04 / SKILLS PLATFORM</span><span class="project-symbol">⌘</span></div>
-            <h3>Knowledge Genome</h3>
-            <p>A skills-gap platform concept designed to help learners assess their knowledge and explore personalized learning roadmaps.</p>
-            <div class="tags"><span>Web Development</span><span>Learning</span><span>Roadmaps</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="security python">
-            <div class="project-top"><span>05 / PASSWORD SECURITY</span><span class="project-symbol">✧</span></div>
-            <h3>Password Strength Checker</h3>
-            <p>A Python utility that evaluates password characteristics and provides strength feedback to encourage safer choices.</p>
-            <div class="tags"><span>Python</span><span>Password Security</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="security python">
-            <div class="project-top"><span>06 / NETWORKING</span><span class="project-symbol">⌘</span></div>
-            <h3>Port Status Checker</h3>
-            <p>A Python-based networking utility that checks TCP ports and categorizes observed connection results.</p>
-            <div class="tags"><span>Python</span><span>TCP</span><span>Networking</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="security python encryption">
-            <div class="project-top"><span>07 / FILE SECURITY</span><span class="project-symbol">◇</span></div>
-            <h3>File Protection Utility</h3>
-            <p>A Python utility for protecting files through encryption and recovering them through the corresponding decryption process.</p>
-            <div class="tags"><span>Python</span><span>Encryption</span><span>File Security</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-
-          <article class="project-card" data-category="security python">
-            <div class="project-top"><span>08 / PHISHING AWARENESS</span><span class="project-symbol">⌁</span></div>
-            <h3>Email Risk Analyzer</h3>
-            <p>A Python project that identifies suspicious wording and potentially risky links to help users recognize phishing signals.</p>
-            <div class="tags"><span>Python</span><span>Phishing Awareness</span><span>Risk Scoring</span></div>
-            <a class="project-link" href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
-          </article>
-        </div>
-        <p class="projects-note">Project links currently lead to my GitHub profile. Individual repository links can be added as each project is published.</p>
-      </section>
-
-      <!-- FOCUS -->
-      <section class="section-wrap content-section" id="focus">
-        <div class="section-heading">
-          <p class="section-number">05 / CURRENT FOCUS</p>
-          <h2>Learning today.<br><span>Securing tomorrow.</span></h2>
-        </div>
-        <div class="focus-list">
-          <article><span>01</span><div><h3>Linux Fundamentals</h3><p>Building confidence with command-line tools and system basics.</p></div></article>
-          <article><span>02</span><div><h3>Computer Networking</h3><p>Understanding network communication, services and traffic.</p></div></article>
-          <article><span>03</span><div><h3>Ethical Cybersecurity</h3><p>Practising in authorized labs and learning responsible testing.</p></div></article>
-          <article><span>04</span><div><h3>Python for Security</h3><p>Writing small tools that solve practical security problems.</p></div></article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section-wrap contact-section" id="contact">
-        <p class="section-number">06 / GET IN TOUCH</p>
-        <h2>Let's build something<br><span>meaningful.</span></h2>
-        <p>Interested in cybersecurity projects, learning opportunities, internships or collaborations? Feel free to connect.</p>
-        <a class="button button-primary"
-           href="https://github.com/mahekkk123"
-           target="_blank" rel="noopener noreferrer">Visit My GitHub ↗</a>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <a class="logo" href="#home">&lt;MK<span>/</span>&gt;</a>
-      <p>Designed and built by Mahek Khan.</p>
-      <a href="https://github.com/mahekkk123" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      <span>© <span id="currentYear">2026</span> Mahek Khan</span>
-    </footer>
-  </div>
 </body>
 </html>
